@@ -22,6 +22,9 @@ EventHandler.prototype = {
 	},
 
 	unregister: function(){
+		if(this.identifierIds.length == 0){
+			throw "Not registered any listeners";
+		}
 		this.identifierIds.forEach(id => EventManager.unregister(id));
 	}
 }
