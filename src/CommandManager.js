@@ -149,7 +149,7 @@ const CommandManager = {
 					return this.usage;
 				}
 				var address = (args[0] + ":19132").split(":");
-				
+
 				Server.joinServer(address[0], address[1]);
 				Console.info("Transfer to " + address[0] + ":" + address[1]);
 			}
