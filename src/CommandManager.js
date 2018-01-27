@@ -77,7 +77,7 @@ const CommandManager = {
 				"Usage: " + Console.info(ret);
 			}
 		}catch(e){
-			Console.critical("Uncaught exception in command " + command.name + ": " + e);
+			Console.exception(e);
 		}
 	},
 
