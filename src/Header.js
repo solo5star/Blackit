@@ -4,14 +4,14 @@ const ScriptManager				= net.zhuoweizhang.mcpelauncher.ScriptManager;
 
 const Configuration				= android.content.res.Configuration;
 
+const Sdcard					= android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
+
 const Button					= android.widget.Button;
 const PopupWindow				= android.widget.PopupWindow;
-const Toast						= android.widget.Toast;
 const TextView					= android.widget.TextView;
 const EditText					= android.widget.EditText;
 const ListView					= android.widget.ListView;
 const ScrollView				= android.widget.ScrollView;
-const ArrayAdapter				= android.widget.ArrayAdapter;
 const LinearLayout				= android.widget.LinearLayout;
 const RelativeLayout			= android.widget.RelativeLayout;
 
@@ -31,19 +31,16 @@ const ScrollingMovementMethod	= android.text.method.ScrollingMovementMethod;
 
 const Bitmap					= android.graphics.Bitmap;
 const BitmapFactory				= android.graphics.BitmapFactory;
-const BitmapDrawable			= android.graphics.drawable.BitmapDrawable;
-const Drawable					= android.graphics.drawable.Drawable;
-const drawable					= android.graphics.drawable;
-const ColorDrawable				= android.graphics.drawable.ColorDrawable;
-const Color						= android.graphics.Color;
 const Canvas					= android.graphics.Canvas;
+const Color						= android.graphics.Color;
 const Paint						= android.graphics.Paint;
 const Typeface					= android.graphics.Typeface;
+const Drawable					= android.graphics.drawable.Drawable;
+const BitmapDrawable			= android.graphics.drawable.BitmapDrawable;
+const ColorDrawable				= android.graphics.drawable.ColorDrawable;
 
 const Thread					= java.lang.Thread;
 const Runnable					= java.lang.Runnable;
-
-const Sdcard					= android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
 
 const Variables 				= {}
 
