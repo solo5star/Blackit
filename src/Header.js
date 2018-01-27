@@ -1,58 +1,58 @@
-const context 					= com.mojang.minecraftpe.MainActivity.currentMainActivity.get();
+const context					= com.mojang.minecraftpe.MainActivity.currentMainActivity.get();
 
-const ScriptManager 			= net.zhuoweizhang.mcpelauncher.ScriptManager;
+const ScriptManager				= net.zhuoweizhang.mcpelauncher.ScriptManager;
 
-const Configuration 			= android.content.res.Configuration;
+const Configuration				= android.content.res.Configuration;
 
-const Button 					= android.widget.Button;
-const PopupWindow 				= android.widget.PopupWindow;
-const Toast 					= android.widget.Toast;
-const TextView 					= android.widget.TextView;
-const EditText 					= android.widget.EditText;
-const ListView 					= android.widget.ListView;
-const ScrollView 				= android.widget.ScrollView;
+const Button					= android.widget.Button;
+const PopupWindow				= android.widget.PopupWindow;
+const Toast						= android.widget.Toast;
+const TextView					= android.widget.TextView;
+const EditText					= android.widget.EditText;
+const ListView					= android.widget.ListView;
+const ScrollView				= android.widget.ScrollView;
 const ArrayAdapter				= android.widget.ArrayAdapter;
-const LinearLayout 				= android.widget.LinearLayout;
-const RelativeLayout 			= android.widget.RelativeLayout;
+const LinearLayout				= android.widget.LinearLayout;
+const RelativeLayout			= android.widget.RelativeLayout;
 
-const View 						= android.view.View;
+const View						= android.view.View;
 const ViewGroup					= android.view.ViewGroup;
-const Gravity 					= android.view.Gravity;
-const KeyEvent 					= android.view.KeyEvent;
+const Gravity					= android.view.Gravity;
+const KeyEvent					= android.view.KeyEvent;
 const MotionEvent				= android.view.MotionEvent;
 
-const Html 						= android.text.Html;
-const InputType 				= android.text.InputType;
-const Spannable 				= android.text.Spannable;
+const Html						= android.text.Html;
+const InputType					= android.text.InputType;
+const Spannable					= android.text.Spannable;
 const SpannableStringBuilder	= android.text.SpannableStringBuilder;
-const StyleSpan 				= android.text.style.StyleSpan;
-const ForegroundColorSpan 		= android.text.style.ForegroundColorSpan;
+const StyleSpan					= android.text.style.StyleSpan;
+const ForegroundColorSpan		= android.text.style.ForegroundColorSpan;
 const ScrollingMovementMethod	= android.text.method.ScrollingMovementMethod;
 
-const Bitmap 					= android.graphics.Bitmap;
-const BitmapFactory 			= android.graphics.BitmapFactory;
-const BitmapDrawable 			= android.graphics.drawable.BitmapDrawable;
-const Drawable 					= android.graphics.drawable.Drawable;
-const drawable 					= android.graphics.drawable;
-const ColorDrawable 			= android.graphics.drawable.ColorDrawable;
-const Color 					= android.graphics.Color;
-const Canvas 					= android.graphics.Canvas;
-const Paint 					= android.graphics.Paint;
-const Typeface 					= android.graphics.Typeface;
+const Bitmap					= android.graphics.Bitmap;
+const BitmapFactory				= android.graphics.BitmapFactory;
+const BitmapDrawable			= android.graphics.drawable.BitmapDrawable;
+const Drawable					= android.graphics.drawable.Drawable;
+const drawable					= android.graphics.drawable;
+const ColorDrawable				= android.graphics.drawable.ColorDrawable;
+const Color						= android.graphics.Color;
+const Canvas					= android.graphics.Canvas;
+const Paint						= android.graphics.Paint;
+const Typeface					= android.graphics.Typeface;
 
-const Thread 					= java.lang.Thread;
-const Runnable 					= java.lang.Runnable;
+const Thread					= java.lang.Thread;
+const Runnable					= java.lang.Runnable;
 
-const Sdcard 					= android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
+const Sdcard					= android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
 
-const Variables = {}
+const Variables 				= {}
 
-const runOnThread 				= func => new Thread(new Runnable({ run: function(){ try{ func() }catch(e){ Console.exception(e) } } })).start();
+const runOnThread				= func => new Thread(new Runnable({ run: function(){ try{ func() }catch(e){ Console.exception(e) } } })).start();
 const runOnUiThread				= func => context.runOnUiThread(new Runnable({ run: function(){ try{ func() }catch(e){ Console.exception(e) } } }));
 
-const cleanChatColor 			= str => str.replace(/§[0-9a-fk-or]/g, "");
-const dip2px 					= dips => Math.ceil(dips * Screen.getDensity());
-const isObject 					= value => value !== null && (typeof value === 'function' || typeof value === 'object');
+const cleanChatColor			= str => str.replace(/§[0-9a-fk-or]/g, "");
+const dip2px					= dips => Math.ceil(dips * Screen.getDensity());
+const isObject					= value => value !== null && (typeof value === 'function' || typeof value === 'object');
 
 const dumpObjectFilter = function(obj){
 	return obj instanceof ModPE
