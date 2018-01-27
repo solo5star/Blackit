@@ -19,16 +19,12 @@ const Rcon = {
 				if(args.length < 2){
 					return this.usage;
 				}
-				try{
-					args[0] += ":19132";
-					var host = args[0].split(":")[0];
-					var port = args[0].split(":")[1];
 
-					Rcon.connect(host, port, args[1]);
+				args[0] += ":19132";
+				var host = args[0].split(":")[0];
+				var port = args[0].split(":")[1];
 
-				}catch(e){
-					Console.error(e);
-				}
+				Rcon.connect(host, port, args[1]);
 			}
 		});
 		CommandManager.register({
@@ -36,12 +32,7 @@ const Rcon = {
 			description: "Disconnect from RCON.",
 			aliases: ["rdisc"],
 			execute: function(args){
-				try{
-					Rcon.disconnect();
-				}catch(e){
-					Console.error(e);
-				}
-				Console.info("RCON is disconnected.");
+				Rcon.disconnect();
 			}
 		});
 		CommandManager.register({
@@ -50,11 +41,7 @@ const Rcon = {
 			usage: "rcommand <command...>",
 			aliases: ["rcom"],
 			execute: function(args){
-				try{
-					Rcon.sendCommand(args.join(" "));
-				}catch(e){
-					Console.error(e);
-				}
+				Rcon.sendCommand(args.join(" "));
 			}
 		});
 		// TODO: Change info to rcon
@@ -74,23 +61,19 @@ const Rcon = {
 		runOnThread(() => { 
 			Rcon.socket = new java.net.Socket();
 
-			try{
-				Rcon.socket.connect(new java.net.InetSocketAddress(host, port), 10000);
+			Rcon.socket.connect(new java.net.InetSocketAddress(host, port), 10000);
 
-				Console.info("Trying authenticate...");
+			Console.info("Trying authenticate...");
 
-				var receive = Rcon._send({type: Rcon.TYPE_LOGIN, message: password});
+			var receive = Rcon._send({type: Rcon.TYPE_LOGIN, message: password});
 
-				if(receive.requestId == -1){
-					Console.error("Password rejected by server");
-					Rcon._disconnect();
-				}else{
-					Console.info("Success to connect.");
-				}
-			}catch(e){
-				Console.error(e);
+			if(receive.requestId == -1){
+				Console.error("Password rejected by server");
+				Rcon._disconnect();
 				return;
 			}
+
+			Console.info("Success to connect.");
 		});
 	},
 
@@ -177,7 +160,7 @@ const Rcon = {
 
 			receive = {requestId: requestId, type: type, payload: payload, message: new java.lang.String(payload)};
 		}catch(e){
-			throw "Cannot read the whole packet, Exception caught: " + e + " on line number " + e.lineNumber;
+			throw e;
 		}
 		return receive;
 	},
@@ -188,6 +171,8 @@ const Rcon = {
 		}
 		Rcon.socket.close();
 		Rcon.socket = null;
+
+		Console.info("RCON is disconnected.");
 	}
 }
 
