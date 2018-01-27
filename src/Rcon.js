@@ -7,8 +7,8 @@ const Rcon = {
 	requestId: 92381, // random number
 
 	init: function(){
-		EventManager.onRconSend = function(listener){ EventManager.register("onRconSend", listener) };
-		EventManager.onRconReceive = function(listener){ EventManager.register("onRconReceive", listener) };
+		EventManager.onRconSend = function(listener){ return EventManager.register("onRconSend", listener) };
+		EventManager.onRconReceive = function(listener){ return EventManager.register("onRconReceive", listener) };
 
 		CommandManager.register({
 			name: "rconnect",

@@ -62,16 +62,16 @@ function startDestroyBlock(x, y, z, side){ EventManager.invoke("onStartDestroyBl
 function destroyBlock(x, y, z, side){ EventManager.invoke("onDestroyBlock", {x: x, y: y, z: z, side: side}) }
 function useItem(x, y, z, itemId, blockId, side, itemDamage, blockDamage){ EventManager.invoke("onUseItem", {x: x, y: y, z: z, itemId: itemId, blockId: blockId, side: side, itemDamage: itemDamage, blockDamage: blockDamage}) }
 
-EventManager.onTick 					= function(listener){ EventManager.register("onTick", listener) }
-EventManager.onNewLevel 				= function(listener){ EventManager.register("onNewLevel", listener) }
-EventManager.onLeaveGame 				= function(listener){ EventManager.register("onLeaveGame", listener) }
-EventManager.onSelectLevel 				= function(listener){ EventManager.register("onSelectLevel", listener) }
-EventManager.onServerMessageReceive 	= function(listener){ EventManager.register("onServerMessageReceive", listener) }
-EventManager.onChat 					= function(listener){ EventManager.register("onChat", listener) }
-EventManager.onChatReceive 				= function(listener){ EventManager.register("onChatReceive", listener) }
-EventManager.onStartDestroyBlock 		= function(listener){ EventManager.register("onStartDestroyBlock", listener) }
-EventManager.onDestroyBlock 			= function(listener){ EventManager.register("onDestroyBlock", listener) }
-EventManager.onUseItem 					= function(listener){ EventManager.register("onUseItem", listener) }
+EventManager.onTick 					= function(listener){ return EventManager.register("onTick", listener) }
+EventManager.onNewLevel 				= function(listener){ return EventManager.register("onNewLevel", listener) }
+EventManager.onLeaveGame 				= function(listener){ return EventManager.register("onLeaveGame", listener) }
+EventManager.onSelectLevel 				= function(listener){ return EventManager.register("onSelectLevel", listener) }
+EventManager.onServerMessageReceive 	= function(listener){ return EventManager.register("onServerMessageReceive", listener) }
+EventManager.onChat 					= function(listener){ return EventManager.register("onChat", listener) }
+EventManager.onChatReceive 				= function(listener){ return EventManager.register("onChatReceive", listener) }
+EventManager.onStartDestroyBlock 		= function(listener){ return EventManager.register("onStartDestroyBlock", listener) }
+EventManager.onDestroyBlock 			= function(listener){ return EventManager.register("onDestroyBlock", listener) }
+EventManager.onUseItem 					= function(listener){ return EventManager.register("onUseItem", listener) }
 
-EventManager.onScriptInit 				= function(listener){ EventManager.register("onScriptInit", listener) }
-EventManager.onScriptEnable 			= function(listener){ EventManager.register("onScriptEnable", listener) }
+EventManager.onScriptInit 				= function(listener){ return EventManager.register("onScriptInit", listener) }
+EventManager.onScriptEnable 			= function(listener){ return EventManager.register("onScriptEnable", listener) }
