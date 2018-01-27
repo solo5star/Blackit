@@ -38,4 +38,4 @@ ToggleButtonGUI._show = function(){
 	this.window.showAtLocation(context.getWindow().getDecorView(), Gravity.LEFT | Gravity.BOTTOM, 0, 0);
 }
 
-EventManager.onScriptEnable(args => GUIManager.addGUI(ToggleButtonGUI));
+EventManager.onScriptEnable(args => { GUIManager.addGUI("ToggleButton", ToggleButtonGUI); ToggleButtonGUI.show(); });

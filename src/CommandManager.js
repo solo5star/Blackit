@@ -77,7 +77,7 @@ const CommandManager = {
 				"Usage: " + Console.info(ret);
 			}
 		}catch(e){
-			Console.critical("Uncaught exception in command " + command.name + ": " + e);
+			Console.exception(e);
 		}
 	},
 
@@ -149,7 +149,7 @@ const CommandManager = {
 					return this.usage;
 				}
 				var address = (args[0] + ":19132").split(":");
-				
+
 				Server.joinServer(address[0], address[1]);
 				Console.info("Transfer to " + address[0] + ":" + address[1]);
 			}

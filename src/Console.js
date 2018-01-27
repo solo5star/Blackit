@@ -11,7 +11,7 @@ const Console = {
 		+ "",
 
 	init: function(){
-		EventManager.onConsoleEcho = function(listener){ EventManager.register("onConsoleEcho", listener) };
+		EventManager.onConsoleEcho = function(listener){ return EventManager.register("onConsoleEcho", listener) };
 	},
 
 	echo: function(rawMessage){

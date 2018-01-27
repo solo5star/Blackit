@@ -37,7 +37,7 @@ const GUIManager = {
 		}
 		return gui;
 	},
-	
+
 	colorize: function(plainText){
 		var newTexts = [];
 
