@@ -5,6 +5,7 @@ Map.js
 gui\GUI.js
 
 EventManager.js
+EventHandler.js
 
 Console.js
 CommandManager.js
