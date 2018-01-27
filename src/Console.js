@@ -66,7 +66,7 @@ const Console = {
 	},
 
 	exception: function(e){
-		this.log(this.toast, ChatColor.RED, "EXCEPTION", e + (e.lineNumber !== undefined ? " on line number " + e.lineNumber : ""));
+		this.log(this.echo, ChatColor.RED, "EXCEPTION", (e.message !== undefined ? e.message : e) + (e.lineNumber !== undefined ? " on line number " + e.lineNumber : ""));
 	}
 }
 
