@@ -22,7 +22,7 @@ const EventManager = {
 
 		var identifierId = this.identifierIdCounter++;
 
-		this.identifierIds.push(identifierId, [eventName, index]);
+		this.identifierIds.put(identifierId, [eventName, index]);
 
 		return identifierId;
 	},

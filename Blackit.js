@@ -7,7 +7,7 @@
  * 
  * A script which can evaluate on-the-fly for ModPE developer 
  * 
- * This code was generated at 2018-01-27 23:38:15
+ * This code was generated at 2018-01-27 23:46:03
  */
 
 
@@ -315,7 +315,7 @@ const EventManager = {
 
 		var identifierId = this.identifierIdCounter++;
 
-		this.identifierIds.push(identifierId, [eventName, index]);
+		this.identifierIds.put(identifierId, [eventName, index]);
 
 		return identifierId;
 	},
@@ -1050,7 +1050,7 @@ ToggleButtonGUI._show = function(){
 	this.window.showAtLocation(context.getWindow().getDecorView(), Gravity.LEFT | Gravity.BOTTOM, 0, 0);
 }
 
-EventManager.onScriptEnable(args => GUIManager.addGUI(ToggleButtonGUI));
+EventManager.onScriptEnable(args => GUIManager.addGUI("ToggleButton", ToggleButtonGUI));
 
 
 
@@ -1188,7 +1188,7 @@ ConsoleGUI._append = function(message){
 	this.lines.append(GUIManager.colorize("\n" + message));
 }
 
-EventManager.onScriptEnable(args => GUIManager.addGUI(ConsoleGUI));
+EventManager.onScriptEnable(args => GUIManager.addGUI("Console", ConsoleGUI));
 
 
 

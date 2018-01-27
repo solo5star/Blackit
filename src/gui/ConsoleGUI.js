@@ -83,4 +83,4 @@ ConsoleGUI._append = function(message){
 	this.lines.append(GUIManager.colorize("\n" + message));
 }
 
-EventManager.onScriptEnable(args => GUIManager.addGUI(ConsoleGUI));
+EventManager.onScriptEnable(args => GUIManager.addGUI("Console", ConsoleGUI));
