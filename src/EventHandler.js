@@ -1,5 +1,7 @@
 function EventHandler(listeners){
 	this.listeners = listeners;
+
+	this.register();
 }
 EventHandler.prototype = {
 	identifierIds: [],
