@@ -43,6 +43,10 @@ const Console = {
 		this.log(this.echo, ChatColor.WHITE, "INFO", message);
 	},
 
+	notice: function(message){
+		this.log(this.echo, ChatColor.GRAY, "NOTICE", message);
+	},
+
 	warn: function(message){
 		this.log(this.echo, ChatColor.LIGHT_PURPLE, "WARN", message);
 	},

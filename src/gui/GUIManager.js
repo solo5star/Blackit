@@ -11,7 +11,7 @@ const GUIManager = {
 
 	addGUI: function(name, gui){
 		if(!(gui instanceof GUI)){
-			throw "gui object " + name + " should extends GUI";
+			throw "Gui object " + name + " should extends GUI";
 		}
 
 		this.guis.put(name, gui);
