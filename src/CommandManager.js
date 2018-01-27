@@ -3,36 +3,52 @@ const CommandManager = {
 	aliases: new Map(),
 
 	register: function(command){
-		if(command.name === undefined)			throw new "Command on CommandManager.register() should implements name property";
+		if(command.name === undefined)			throw new "Command on CommandManager.register(command) should implements name property";
 		if(command.description === undefined) 	command.description = "";
 		if(command.usage === undefined) 		command.usage = command.name;
 		if(command.aliases === undefined) 		command.aliases = [];
 		if(command.execute === undefined) 		command.execute = function(args){  };
 
-		commandName = command.name.toLowerCase();
+		var lowercase = command.name.toLowerCase();
 
-		if(this.getCommand(commandName) !== undefined){
-			throw "Command name \"" + commandName + "\" is already used.";
+		if(this.getCommand(lowercase) !== undefined){
+			throw "Command name \"" + lowercase + "\" is already used.";
 		}
-		this.commands.put(commandName, command);
+		this.commands.put(lowercase, command);
 
 		command.aliases.forEach(aliase => {
 			aliase = aliase.toLowerCase();
 
-			if(this.getCommand(aliase) !== undefined){
-				Console.warn("Command " + commandName + "\'s alise \"" + aliase + "\" is already used.");
+			if((find = this.getCommand(aliase)) !== undefined){
+				Console.warn("Command " + lowercase + "\'s alise \"" + aliase + "\" is already use at command " + find.name);
 			}else{
 				this.aliases.put(aliase, command);
 			}
 		});
 	},
 
-	getCommand: function(commandName){
-		commandName = commandName.toLowerCase();
-		if(this.commands.containsKey(commandName)){
-			return this.commands.get(commandName);
-		}else if(this.aliases.containsKey(commandName)){
-			return this.aliases.get(commandName);
+	unregister: function(command){
+		if(typeof command === 'object'){
+			command = command.name;
+		}
+		var result = this.getCommand(command);
+
+		if(result === undefined){
+			throw "Command " + command + " is not registered";
+		}
+
+		this.commands.forEach(check => check === result && this.commands.remove(check.name));
+		this.aliases.forEach(check => check === result && this.aliases.remove(check.name));
+
+		return result;
+	},
+
+	getCommand: function(name){
+		name = name.toLowerCase();
+		if(this.commands.containsKey(name)){
+			return this.commands.get(name);
+		}else if(this.aliases.containsKey(name)){
+			return this.aliases.get(name);
 		}
 	},
 
@@ -71,7 +87,7 @@ const CommandManager = {
 			description: "Print all available commands.",
 			aliases: ["?", "commands"],
 			execute: function(args){
-				Console.info("§l§aCommand list");
+				Console.info(ChatColor.BOLD + ChatColor.GREEN + "Command list");
 				CommandManager.commands.values().forEach(command => {
 					Console.info(ChatColor.DARK_GREEN + ChatColor.BOLD + command.usage + ChatColor.RESET + " - " + command.description)
 				});
@@ -82,7 +98,7 @@ const CommandManager = {
 			description: "Print the version information of script.",
 			aliases: ["ver", "about"],
 			execute: function(args){
-				Console.info("§l§aBlackit version");
+				Console.info(ChatColor.BOLD + ChatColor.GREEN + "Blackit version");
 				Console.info(Blackit.version);
 			}
 		});
@@ -107,7 +123,7 @@ const CommandManager = {
 				if(args.length === 0){
 					return this.usage;
 				}
-				Console.info("§l§aEval result");
+				Console.info(ChatColor.BOLD + ChatColor.GREEN + "Eval result");
 
 				var code = args.join(" ");
 				Console.info("code: " + code);
