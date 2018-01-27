@@ -7,7 +7,7 @@
  * 
  * A script which can evaluate on-the-fly for ModPE developer 
  * 
- * This code was generated at 2018-01-27 23:46:03
+ * This code was generated at 2018-01-28 00:16:51
  */
 
 
@@ -327,9 +327,9 @@ const EventManager = {
 		if(!this.identifierIds.containsKey(identifierId)){
 			throw "IdentifierId " + identifierId + " is already unregistered";
 		}
-		var loc = this.identifierIds.get(identifierId);
+		var loc = this.identifierIds.remove(identifierId);
 
-		return this.eventListeners.get(loc.shift()).remove(loc.shift());
+		return this.eventListeners.get(loc.shift()).splice(loc.shift(), 1).pop();
 	},
 
 	getAllEvents: function(){
@@ -355,19 +355,19 @@ function startDestroyBlock(x, y, z, side){ EventManager.invoke("onStartDestroyBl
 function destroyBlock(x, y, z, side){ EventManager.invoke("onDestroyBlock", {x: x, y: y, z: z, side: side}) }
 function useItem(x, y, z, itemId, blockId, side, itemDamage, blockDamage){ EventManager.invoke("onUseItem", {x: x, y: y, z: z, itemId: itemId, blockId: blockId, side: side, itemDamage: itemDamage, blockDamage: blockDamage}) }
 
-EventManager.onTick 					= function(listener){ EventManager.register("onTick", listener) }
-EventManager.onNewLevel 				= function(listener){ EventManager.register("onNewLevel", listener) }
-EventManager.onLeaveGame 				= function(listener){ EventManager.register("onLeaveGame", listener) }
-EventManager.onSelectLevel 				= function(listener){ EventManager.register("onSelectLevel", listener) }
-EventManager.onServerMessageReceive 	= function(listener){ EventManager.register("onServerMessageReceive", listener) }
-EventManager.onChat 					= function(listener){ EventManager.register("onChat", listener) }
-EventManager.onChatReceive 				= function(listener){ EventManager.register("onChatReceive", listener) }
-EventManager.onStartDestroyBlock 		= function(listener){ EventManager.register("onStartDestroyBlock", listener) }
-EventManager.onDestroyBlock 			= function(listener){ EventManager.register("onDestroyBlock", listener) }
-EventManager.onUseItem 					= function(listener){ EventManager.register("onUseItem", listener) }
+EventManager.onTick 					= function(listener){ return EventManager.register("onTick", listener) }
+EventManager.onNewLevel 				= function(listener){ return EventManager.register("onNewLevel", listener) }
+EventManager.onLeaveGame 				= function(listener){ return EventManager.register("onLeaveGame", listener) }
+EventManager.onSelectLevel 				= function(listener){ return EventManager.register("onSelectLevel", listener) }
+EventManager.onServerMessageReceive 	= function(listener){ return EventManager.register("onServerMessageReceive", listener) }
+EventManager.onChat 					= function(listener){ return EventManager.register("onChat", listener) }
+EventManager.onChatReceive 				= function(listener){ return EventManager.register("onChatReceive", listener) }
+EventManager.onStartDestroyBlock 		= function(listener){ return EventManager.register("onStartDestroyBlock", listener) }
+EventManager.onDestroyBlock 			= function(listener){ return EventManager.register("onDestroyBlock", listener) }
+EventManager.onUseItem 					= function(listener){ return EventManager.register("onUseItem", listener) }
 
-EventManager.onScriptInit 				= function(listener){ EventManager.register("onScriptInit", listener) }
-EventManager.onScriptEnable 			= function(listener){ EventManager.register("onScriptEnable", listener) }
+EventManager.onScriptInit 				= function(listener){ return EventManager.register("onScriptInit", listener) }
+EventManager.onScriptEnable 			= function(listener){ return EventManager.register("onScriptEnable", listener) }
 
 
 
@@ -387,7 +387,7 @@ const Console = {
 		+ "",
 
 	init: function(){
-		EventManager.onConsoleEcho = function(listener){ EventManager.register("onConsoleEcho", listener) };
+		EventManager.onConsoleEcho = function(listener){ return EventManager.register("onConsoleEcho", listener) };
 	},
 
 	echo: function(rawMessage){
@@ -833,8 +833,8 @@ const Rcon = {
 	requestId: 92381, // random number
 
 	init: function(){
-		EventManager.onRconSend = function(listener){ EventManager.register("onRconSend", listener) };
-		EventManager.onRconReceive = function(listener){ EventManager.register("onRconReceive", listener) };
+		EventManager.onRconSend = function(listener){ return EventManager.register("onRconSend", listener) };
+		EventManager.onRconReceive = function(listener){ return EventManager.register("onRconReceive", listener) };
 
 		CommandManager.register({
 			name: "rconnect",
@@ -1050,7 +1050,7 @@ ToggleButtonGUI._show = function(){
 	this.window.showAtLocation(context.getWindow().getDecorView(), Gravity.LEFT | Gravity.BOTTOM, 0, 0);
 }
 
-EventManager.onScriptEnable(args => GUIManager.addGUI("ToggleButton", ToggleButtonGUI));
+EventManager.onScriptEnable(args => { GUIManager.addGUI("ToggleButton", ToggleButtonGUI); ToggleButtonGUI.show(); });
 
 
 
