@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 	FILE *fp_from;
 	FILE *fp_to;
 
-	char *from_name;
+	char *name_to;
 	char c;
 
 	if(argc - 1 < 2)
@@ -28,8 +28,8 @@ int main(int argc, char *argv[])
 		return 0;
 	}
 
-	from_name = argv[argi++];
-	fp_to = fopen(from_name, "w");
+	name_to = argv[argi++];
+	fp_to = fopen(name_to, "w");
 
 	fprintf(fp_to, "/**\n");
 	fprintf(fp_to, " *  ____  _            _    _ _ \n");
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 			printf("Cannot open file %s\n", argv[argi]);
 			continue;
 		}
-		printf("Adding file %s into %s ...\n", argv[argi], from_name);
+		printf("Adding file %s into %s ...\n", argv[argi], name_to);
 
 		fprintf(fp_to, "\n\n\n");
 		fprintf(fp_to, "/**\n");
