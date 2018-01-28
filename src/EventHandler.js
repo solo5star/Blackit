@@ -4,7 +4,7 @@ function EventHandler(listeners){
 	this.register();
 }
 EventHandler.prototype = {
-	identifierIds: [],
+	eventIds: [],
 
 	register: function(){
 		if(this.listeners === undefined){
@@ -16,15 +16,15 @@ EventHandler.prototype = {
 
 		for(var event in this.listeners){
 			if(events.indexOf(event) != -1){
-				this.identifierIds.push(EventManager[event](args => listeners[event](args)));
+				this.eventIds.push(EventManager[event](args => listeners[event](args)));
 			}
 		}
 	},
 
 	unregister: function(){
-		if(this.identifierIds.length == 0){
+		if(this.eventIds.length == 0){
 			throw "Not registered any listeners";
 		}
-		this.identifierIds.forEach(id => EventManager.unregister(id));
+		this.eventIds.forEach(id => EventManager.unregister(id));
 	}
 }

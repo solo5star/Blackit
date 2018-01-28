@@ -1,6 +1,6 @@
 const EventManager = {
-	identifierIdCounter: 0,
-	identifierIds: new Map(),
+	eventIdCounter: 0,
+	eventIds: new Map(),
 	eventListeners: new Map(),
 
 	invoke: function(eventName, args){
@@ -20,21 +20,21 @@ const EventManager = {
 		}
 		var index = this.eventListeners.get(eventName).push(listener) - 1;
 
-		var identifierId = this.identifierIdCounter++;
+		var eventId = this.eventIdCounter++;
 
-		this.identifierIds.put(identifierId, [eventName, index]);
+		this.eventIds.put(eventId, [eventName, index]);
 
-		return identifierId;
+		return eventId;
 	},
 
-	unregister: function(identifierId){
-		if(identifierId > this.identifierIdCounter){
-			throw "IdentifierId" + identifierId + " is not registered";
+	unregister: function(eventId){
+		if(eventId > this.eventIdCounter){
+			throw "IdentifierId" + eventId + " is not registered";
 		}
-		if(!this.identifierIds.containsKey(identifierId)){
-			throw "IdentifierId " + identifierId + " is already unregistered";
+		if(!this.eventIds.containsKey(eventId)){
+			throw "IdentifierId " + eventId + " is already unregistered";
 		}
-		var loc = this.identifierIds.remove(identifierId);
+		var loc = this.eventIds.remove(eventId);
 
 		return this.eventListeners.get(loc.shift()).splice(loc.shift(), 1).pop();
 	},
